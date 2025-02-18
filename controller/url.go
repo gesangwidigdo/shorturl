@@ -32,9 +32,9 @@ func (u *urlController) CreateShortUrl(ctx *gin.Context) {
 }
 
 // GetOriginalUrl implements interfaces.UrlController.
-func (u *urlController) GetOriginalUrl(ctx *gin.Context) {
+func (u *urlController) RedirectToOriginal(ctx *gin.Context) {
 	shortUrl := ctx.Param("short_url")
-	originalUrl, err := u.urlService.GetOriginalUrl(shortUrl)
+	originalUrl, err := u.urlService.Redirect(shortUrl)
 	if err != nil {
 		ctx.JSON(500, gin.H{"error": err.Error()})
 		return

@@ -14,11 +14,11 @@ type UrlRepository interface {
 
 type UrlService interface {
 	CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreateResponse, error)
-	GetOriginalUrl(shortUrl string) (string, error)
+	Redirect(shortUrl string) (string, error)
 	IncrementClicks(shortUrl string) error
 }
 
 type UrlController interface {
 	CreateShortUrl(ctx *gin.Context)
-	GetOriginalUrl(ctx *gin.Context)
+	RedirectToOriginal(ctx *gin.Context)
 }

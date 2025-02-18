@@ -56,9 +56,13 @@ func (u *urlService) CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreate
 }
 
 // GetOriginalUrl implements interfaces.UrlService.
-func (u *urlService) GetOriginalUrl(shortUrl string) (string, error) {
+func (u *urlService) Redirect(shortUrl string) (string, error) {
 	url, err := u.urlRepository.FindByShortUrl(shortUrl)
 	if err != nil {
+		return "", err
+	}
+
+	if err := u.urlRepository.IncrementClicks(url); err != nil {
 		return "", err
 	}
 

@@ -15,5 +15,5 @@ func URLRouter(r *gin.RouterGroup, db *gorm.DB) {
 	var urlController interfaces.UrlController = controller.NewUrlController(urlService)
 
 	r.POST("/shorten", urlController.CreateShortUrl)
-	r.GET("/:short_url", urlController.GetOriginalUrl)
+	r.GET("/:short_url", urlController.RedirectToOriginal)
 }
