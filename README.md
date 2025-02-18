@@ -8,21 +8,20 @@ Simple URL Shortener
 
 1. Without Custom Short URL
 
-
-```js
-{
-    "original_url": "https://www.example.com/",
-}
-```
+    ```js
+    {
+        "original_url": "https://www.example.com/",
+    }
+    ```
 
 2. With Custom Short URL
 
-```js
-{
-    "original_url": "https://www.example.com/",
-    "short_url": "example"
-}
-```
+    ```js
+    {
+        "original_url": "https://www.example.com/",
+        "short_url": "example"
+    }
+    ```
 
 ### How to use shortened URL?
 
