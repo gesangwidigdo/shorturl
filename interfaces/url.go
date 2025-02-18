@@ -15,7 +15,6 @@ type UrlRepository interface {
 type UrlService interface {
 	CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreateResponse, error)
 	Redirect(shortUrl string) (string, error)
-	IncrementClicks(shortUrl string) error
 }
 
 type UrlController interface {

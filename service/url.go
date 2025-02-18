@@ -68,8 +68,3 @@ func (u *urlService) Redirect(shortUrl string) (string, error) {
 
 	return url.OriginalUrl, nil
 }
-
-// IncrementClicks implements interfaces.UrlService.
-func (u *urlService) IncrementClicks(shortUrl string) error {
-	panic("unimplemented")
-}
