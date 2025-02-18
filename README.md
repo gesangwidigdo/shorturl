@@ -11,7 +11,7 @@ Simple URL Shortener
 
 ```js
 {
-    "original_url": "https://www.torn.com/",
+    "original_url": "https://www.example.com/",
 }
 ```
 
