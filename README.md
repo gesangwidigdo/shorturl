@@ -26,5 +26,5 @@ Simple URL Shortener
 ### How to use shortened URL?
 
 ```
-{{ root_url }}/api/url/:short_url
+{{ root_url }}/:short_url
 ```
