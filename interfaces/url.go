@@ -13,7 +13,7 @@ type UrlRepository interface {
 }
 
 type UrlService interface {
-	CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreateResponse, error)
+	CreateShortUrl(userId uint, request dto.UrlCreateRequest) (dto.UrlCreateResponse, error)
 	Redirect(shortUrl string) (string, error)
 }
 

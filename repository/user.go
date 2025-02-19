@@ -13,7 +13,7 @@ type userRepository struct {
 // GetUserByEmail implements interfaces.UserRepository.
 func (u *userRepository) GetUserByEmail(email string) (model.User, error) {
 	var user model.User
-	if err := u.db.Where("email = ?", email).Select("email, password").Take(&user).Error; err != nil {
+	if err := u.db.Where("email = ?", email).Select("id, email, password").Take(&user).Error; err != nil {
 		return model.User{}, err
 	}
 	return user, nil

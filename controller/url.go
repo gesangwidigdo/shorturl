@@ -22,7 +22,21 @@ func (u *urlController) CreateShortUrl(ctx *gin.Context) {
 		return
 	}
 
-	urlRes, err := u.urlService.CreateShortUrl(urlReq)
+	id, ok := ctx.Get("id")
+	if !ok {
+		ctx.JSON(401, gin.H{"error": "Unauthorized"})
+		return
+	}
+
+	idFloat, ok := id.(float64)
+	if !ok {
+		ctx.JSON(401, gin.H{"error": "Unauthorized"})
+		return
+	}
+
+	idUint := uint(idFloat)
+
+	urlRes, err := u.urlService.CreateShortUrl(idUint, urlReq)
 	if err != nil {
 		ctx.JSON(500, gin.H{"error": err.Error()})
 		return

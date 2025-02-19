@@ -19,28 +19,26 @@ func NewUrlService(urlRepository interfaces.UrlRepository) interfaces.UrlService
 }
 
 // CreateShortUrl implements interfaces.UrlService.
-func (u *urlService) CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreateResponse, error) {
+func (u *urlService) CreateShortUrl(userId uint, request dto.UrlCreateRequest) (dto.UrlCreateResponse, error) {
 	if strings.Contains(request.ShortUrl, " ") || strings.Contains(request.ShortUrl, "/") {
 		return dto.UrlCreateResponse{}, errors.New("short url cannot contain spaces or slashes")
 	}
 
 	var shortUrl string
-
 	var url model.Url
 	if request.ShortUrl == "" {
 		shortUrl = utils.GenerateRandomString(6)
 		url = model.Url{
 			OriginalUrl: request.OriginalUrl,
 			ShortUrl:    shortUrl,
+			UserID: 		userId,
 		}
-
 	} else if request.ShortUrl != "" {
-
 		url = model.Url{
 			OriginalUrl: request.OriginalUrl,
 			ShortUrl:    request.ShortUrl,
+			UserID: 		userId,
 		}
-
 	}
 
 	if err := u.urlRepository.Create(&url); err != nil {
