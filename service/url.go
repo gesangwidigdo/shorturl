@@ -28,12 +28,7 @@ func (u *urlService) CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreate
 
 	var url model.Url
 	if request.ShortUrl == "" {
-		var err error
-		shortUrl, err = utils.EncryptURL(request.OriginalUrl)
-		if err != nil {
-			return dto.UrlCreateResponse{}, err
-		}
-		
+		shortUrl = utils.GenerateRandomString(6)
 		url = model.Url{
 			OriginalUrl: request.OriginalUrl,
 			ShortUrl:    shortUrl,
@@ -45,7 +40,7 @@ func (u *urlService) CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreate
 			OriginalUrl: request.OriginalUrl,
 			ShortUrl:    request.ShortUrl,
 		}
-		
+
 	}
 
 	if err := u.urlRepository.Create(&url); err != nil {
