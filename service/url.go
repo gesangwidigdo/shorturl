@@ -44,6 +44,9 @@ func (u *urlService) CreateShortUrl(request dto.UrlCreateRequest) (dto.UrlCreate
 	}
 
 	if err := u.urlRepository.Create(&url); err != nil {
+		if strings.Contains(err.Error(), "Duplicate entry") {
+			return dto.UrlCreateResponse{}, errors.New("short url doesn't available")
+		}
 		return dto.UrlCreateResponse{}, err
 	}
 
